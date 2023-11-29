@@ -8,7 +8,7 @@ function App() {
 	return <>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-		<BrowserRouter>
+		<BrowserRouter basename={import.meta.env.BASE_URL}>
 			<div id="nav" className="tab-area-base">
 				<ul className="tab-menu-base">
 					<li>
