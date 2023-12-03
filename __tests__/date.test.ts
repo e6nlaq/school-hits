@@ -1,5 +1,5 @@
 
-import { is_after_pm5 } from '../src/func/date';
+import { is_after_pm5, get_month_day } from '../src/func/date';
 import dayjs from 'dayjs';
 
 function zfill(a: number, n: number): string {
@@ -25,5 +25,15 @@ describe('is_after_pm5', () => {
 
 	test('same_pm5', () => {
 		expect(is_after_pm5(dayjs("2023/1/1 17:00"))).toBe("2023-01-02");
+	});
+});
+
+describe('get_month_day', () => {
+	test('main', () => {
+		for (let m: number = 1; m <= 12; ++m) {
+			for (let d: number = 1; d <= 20; ++d) {
+				expect(get_month_day(dayjs(`2023/${m}/${d} 0:00`))).toStrictEqual([m, d]);
+			}
+		}
 	});
 });
