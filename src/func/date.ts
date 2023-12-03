@@ -17,3 +17,12 @@ export function is_after_pm5(date: dayjs.Dayjs): string {
 		return date.startOf('day').format("YYYY-MM-DD");
 	}
 }
+
+/**
+ * 与えられた日時から、月と日を取得する
+ * @param date 取得する日時
+ * @returns [月, 日]をnumber[]で返す
+ */
+export function get_month_day(date: dayjs.Dayjs): number[] {
+	return [date.month() + 1, date.date()];
+}
