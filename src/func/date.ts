@@ -10,7 +10,7 @@ dayjs.extend(isSameOfAfter);
  * @param date 判定する時刻
  * @returns 午後5時以降の場合、与えられた時刻の明日を、以前の場合は与えられた時刻を"YYYY-MM-DD"の形式で返す。
  */
-export function is_after_pm5(date: dayjs.Dayjs): string {
+export const is_after_pm5 = (date: dayjs.Dayjs): string => {
 	if (date.isSameOrAfter(date.startOf('day').add(17, 'hours'))) {
 		return date.add(1, 'day').startOf('day').format("YYYY-MM-DD");
 	} else {
@@ -23,6 +23,6 @@ export function is_after_pm5(date: dayjs.Dayjs): string {
  * @param date 取得する日時
  * @returns [月, 日]をnumber[]で返す
  */
-export function get_month_day(date: dayjs.Dayjs): number[] {
+export const get_month_day = (date: dayjs.Dayjs): number[] => {
 	return [date.month() + 1, date.date()];
 }

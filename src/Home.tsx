@@ -7,7 +7,7 @@ import { Helmet } from 'react-helmet-async';
 import { is_after_pm5 } from './func/date';
 import { check_cookie } from './func/cookie';
 
-function Home() {
+const Home = () => {
   // const [cookies, setCookie] = useCookies(["dp_count"]);
 
   return (

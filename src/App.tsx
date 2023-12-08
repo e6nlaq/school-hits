@@ -4,8 +4,7 @@ import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import Home from './Home'
 import Setting from './Setting'
 
-
-function App() {
+const App = () => {
 	return <>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
