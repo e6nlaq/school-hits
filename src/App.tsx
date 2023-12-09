@@ -3,6 +3,7 @@ import './css/index.css'
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import Home from './Home'
 import Setting from './Setting'
+import NotFound from './404'
 
 const App = () => {
 	return <>
@@ -33,6 +34,7 @@ const App = () => {
 				<Routes>
 					<Route path='/' element={<Home />}></Route>
 					<Route path='/setting' element={<Setting />}></Route>
+					<Route path='*' element={<NotFound />}></Route>
 				</Routes>
 
 			</div>
