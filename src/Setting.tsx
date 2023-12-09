@@ -54,7 +54,7 @@ const Setting = () => {
 					removeCookie("dp_count");
 					removeCookie("user_number");
 					removeCookie("class_count");
-					location.reload();
+					location.href = "/";
 				}
 			}
 		}>
