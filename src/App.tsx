@@ -34,7 +34,6 @@ const App = () => {
 				<Routes>
 					<Route path='/' element={<Home />}></Route>
 					<Route path='/setting' element={<Setting />}></Route>
-					<Route path='*' element={<NotFound />}></Route>
 				</Routes>
 
 			</div>
