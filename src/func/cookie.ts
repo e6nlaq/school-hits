@@ -1,11 +1,18 @@
 import Cookies from "js-cookie";
 
+/**
+ * Cookieをデフォルトの設定にする
+ * @param force 強制的に実行するかどうか(規定値: false)
+ */
 export const init_cookie = (force: boolean = false): void => {
 	if (force || Cookies.get('dp_count') === undefined) {
 		Cookies.set('dp_count', '5');
 	}
 }
 
+/**
+ * 未設定のCookieを`alert`でお知らせする。
+ */
 export const check_cookie = (): void => {
 	const unsetting_list: string[] = [];
 	const check_list: string[] = [
