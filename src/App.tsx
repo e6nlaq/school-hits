@@ -3,7 +3,6 @@ import './css/index.css'
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import Home from './Home'
 import Setting from './Setting'
-import NotFound from './404'
 
 const App = () => {
 	return <>
