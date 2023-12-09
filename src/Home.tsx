@@ -5,9 +5,10 @@ import { Helmet } from 'react-helmet-async';
 // import { useCookies } from 'react-cookie';
 
 import { is_after_pm5 } from './func/date';
-import { check_cookie } from './func/cookie';
+import { check_cookie, init_cookie } from './func/cookie';
 
 const Home = () => {
+  init_cookie();
   // const [cookies, setCookie] = useCookies(["dp_count"]);
 
   return (
