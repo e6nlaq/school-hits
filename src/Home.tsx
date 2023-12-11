@@ -2,30 +2,34 @@
 import dayjs from 'dayjs';
 import './css/App.css'
 import { Helmet } from 'react-helmet-async';
-// import { useCookies } from 'react-cookie';
+import { useCookies } from 'react-cookie';
 
 import { is_after_pm5 } from './func/date';
-import { check_cookie, init_cookie } from './func/cookie';
+import { check_cookie } from './func/cookie';
+import { cookie_date } from './variable/cookie';
 
 const Home = () => {
-  init_cookie();
-  // const [cookies, setCookie] = useCookies(["dp_count"]);
+	const [cookies, setCookie] = useCookies(["dp_count"]);
 
-  return (
-    <>
-      <Helmet>
-        <title>School Hit</title>
-      </Helmet>
+	if (cookies.dp_count === undefined) {
+		setCookie('dp_count', 5, { maxAge: cookie_date });
+	}
 
-      <h1>School Hit</h1>
-      <br />
+	return (
+		<>
+			<Helmet>
+				<title>School Hit</title>
+			</Helmet>
 
-      <input type="date" id="check_date" defaultValue={is_after_pm5(dayjs())} />
-      <br />
-      <br />
-      <button onClick={check_cookie}>Check</button>
-    </>
-  )
+			<h1>School Hit</h1>
+			<br />
+
+			<input type="date" id="check_date" defaultValue={is_after_pm5(dayjs())} />
+			<br />
+			<br />
+			<button onClick={check_cookie}>Check</button>
+		</>
+	)
 }
 
 export default Home;
