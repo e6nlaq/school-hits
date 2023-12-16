@@ -25,14 +25,14 @@ const Setting = () => {
 		<h1>Setting</h1>
 
 		<label htmlFor="dp_count">計算回数</label>
-		<input type="number" id="dp_count" value={cookie.dp_count} min={1} max={10} onChange={(event) => {
+		<input type="number" id="dp_count" value={cookie.dp_count} min={1} max={100} onChange={(event) => {
 			setCookie("dp_count", format(event), { maxAge: cookie_date });
 		}} />
 
 		<br />
 
 		<label htmlFor="user_number">あなたの出席番号</label>
-		<input type="number" id="user_number" value={cookie.user_number} min={1} max={Number(cookie.class_count)} disabled={cookie.class_count === undefined} onChange={
+		<input type="number" id="user_number" value={cookie.user_number} min={1} max={Number(cookie.class_count ?? 3776)} disabled={cookie.class_count === undefined} onChange={
 			(event) => {
 				setCookie("user_number", format(event), { maxAge: cookie_date });
 			}

@@ -6,6 +6,7 @@ import { useCookies } from 'react-cookie';
 
 import { is_after_pm5 } from './func/date';
 import { check_cookie } from './func/cookie';
+import { dp_run } from './func/dp';
 import { cookie_date } from './variable/cookie';
 
 const Home = () => {
@@ -27,7 +28,11 @@ const Home = () => {
 			<input type="date" id="check_date" defaultValue={is_after_pm5(dayjs())} />
 			<br />
 			<br />
-			<button onClick={check_cookie}>Check</button>
+			<button onClick={() => {
+				if (check_cookie()) {
+					console.log(dp_run());
+				}
+			}}>Check</button>
 		</>
 	)
 }
