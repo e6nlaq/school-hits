@@ -1,10 +1,10 @@
 
 import Cookies from "js-cookie";
 import dayjs from "dayjs";
+import * as math from 'mathjs';
 
 import { func_dp } from "../variable/func_dp";
 import { get_month_day } from "./date";
-import * as math from 'mathjs';
 
 interface dp_type {
 	[key: number]: number;

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import * as math from 'mathjs';
 
 export const func_dp = [
