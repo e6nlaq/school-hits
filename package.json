@@ -18,7 +18,8 @@
     "react-cookie": "^6.1.1",
     "react-dom": "^18.2.0",
     "react-helmet-async": "^2.0.3",
-    "react-router-dom": "^6.20.0"
+    "react-router-dom": "^6.20.0",
+    "tstl": "^2.5.13"
   },
   "devDependencies": {
     "@types/jest": "^29.5.10",
