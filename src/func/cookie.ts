@@ -21,11 +21,5 @@ export const check_cookie = (): boolean => {
 		return false;
 	}
 
-	if (Number(Cookies.get('dp_count')) > 3) {
-		if (!confirm("警告\n\n計算回数を3より多く設定した場合、計算が終わらなくなる場合があります。\n本当に実行しますか?")) {
-			return false;
-		}
-	}
-
 	return true;
 }
