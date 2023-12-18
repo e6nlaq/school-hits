@@ -1,5 +1,4 @@
 
-import Cookies from "js-cookie";
 import dayjs from "dayjs";
 import * as math from 'mathjs';
 import { Queue } from "tstl";
@@ -11,9 +10,7 @@ interface dp_type {
 	[key: number]: number;
 }
 
-export const dp_run = () => {
-	const class_count = Number(Cookies.get("class_count"));
-
+export const dp_run = (class_count: number) => {
 	// dp初期化
 	let dp: dp_type = {};
 
