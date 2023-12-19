@@ -1,16 +1,16 @@
 
 import dayjs from "dayjs";
 import * as math from 'mathjs';
-import { Queue } from "tstl";
+import { Queue, HashSet } from "tstl";
 
 import { func_dp } from "../variable/func_dp";
-import { get_month_day } from "./date";
+import { get_month_day, is_after_pm5 } from "./date";
 
-interface dp_type {
+export interface dp_type {
 	[key: number]: number;
 }
 
-export const dp_run = (class_count: number, date: dayjs.Dayjs = dayjs()): dp_type => {
+export const dp_run = (class_count: number, date: dayjs.Dayjs = dayjs(is_after_pm5(dayjs()))): dp_type => {
 	if (!math.isInteger(class_count) || math.isNegative(class_count)) {
 		throw new RangeError(`引数は非負整数である必要があります。(値: ${class_count})`);
 	}
@@ -21,8 +21,12 @@ export const dp_run = (class_count: number, date: dayjs.Dayjs = dayjs()): dp_typ
 	const [m, d] = get_month_day(date);
 	dp = { [m]: 0, [d]: 0 };
 
+	// Queue初期化	
 	const q = new Queue<number>();
 	q.push(m, d);
+
+	// HashSet初期化
+	const dat = new HashSet<number>([m, d]);
 
 	while (!q.empty()) {
 		const prev = Object.keys(dp);
@@ -68,16 +72,20 @@ export const dp_run = (class_count: number, date: dayjs.Dayjs = dayjs()): dp_typ
 				// 0・NaN・Infinity
 				if (result === 0 || Number.isNaN(result) || result === Infinity) continue;
 
-				if (dp[result] === undefined) {
+				if (dp[result] === undefined || dp[result] > value) {
 					dp[result] = value;
-					q.push(result);
-				} else if (dp[result] > value) {
-					dp[result] = value;
-					q.push(result);
+
+					if (!dat.has(result)) {
+						q.push(result);
+						dat.insert(result);
+					}
 				}
 			}
 		}
 
+		// console.log(q.size());
+
+		dat.erase(q.front());
 		q.pop();
 	}
 
