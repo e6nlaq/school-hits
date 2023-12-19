@@ -28,7 +28,7 @@ const Setting = () => {
 		<br />
 
 		<label htmlFor="class_count">クラスの人数</label>
-		<input type="number" id="class_count" value={cookie.class_count} min={1} max={1000} onChange={
+		<input type="number" id="class_count" value={cookie.class_count} min={1} max={100} onChange={
 			(event) => {
 				setCookie("class_count", event.target.value, { maxAge: cookie_date });
 				setCookie("user_number", input_format(Number(cookie.user_number), 1, Number(event.target.value), true));
