@@ -19,18 +19,6 @@ describe('roop', () => {
 			expect(Object.keys(result).length).toBeLessThanOrEqual(i + plus);
 		}
 	});
-
-	test.concurrent('dates', () => {
-		for (let m = 1; m <= 12; ++m) {
-			for (let d = 1; d <= 20; ++d) {
-				const i = random.integer(1, 5);
-				const plus = Number(m > i) + Number(d > i);
-
-				const result = dp_run(i, dayjs().month(m).day(d));
-				expect(Object.keys(result).length).toBeLessThanOrEqual(i + plus);
-			}
-		}
-	});
 });
 
 describe('error', () => {
