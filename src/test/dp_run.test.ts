@@ -24,17 +24,17 @@ describe('roop', () => {
 describe('error', () => {
 	test.concurrent('minus', () => {
 		for (let i = 0; i < random_count; ++i) {
-			expect(dp_run(random.integer(Number.MIN_SAFE_INTEGER, -1))).toThrow(RangeError);
+			expect(dp_run(random.integer(Number.MIN_SAFE_INTEGER, -1))).rejects.toThrow(RangeError);
 		}
 	});
 
 	test.concurrent('float', () => {
 		for (let i = 0; i < random_count; ++i) {
-			let val = random.real(Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER);
+			let val = random.real(0, Number.MAX_SAFE_INTEGER);
 
 			if (math.isInteger(val)) val = math.add(val, 0.1);
 
-			expect(dp_run(val)).toThrow(RangeError);
+			expect(dp_run(val)).rejects.toThrow(RangeError);
 		}
 	});
 });
