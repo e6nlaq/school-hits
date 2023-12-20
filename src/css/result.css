@@ -1,0 +1,33 @@
+.result_red {
+	font-size: 100px;
+	color: red;
+	font-weight: bold;
+}
+
+.result_orangered {
+	font-size: 80px;
+	color: orangered;
+	font-weight: bold;
+}
+
+.result_orange {
+	font-size: 50px;
+	color: orange;
+	font-weight: 700;
+}
+
+.result_yellow {
+	font-size: 40px;
+	color: rgb(236, 201, 0);
+	font-weight: 500;
+}
+
+.result_rime {
+	font-size: 35px;
+	color: rgb(0, 209, 0);
+}
+
+.result_safe {
+	font-size: 30px;
+	color: deepskyblue;
+}

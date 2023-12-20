@@ -5,10 +5,12 @@ import { Helmet } from 'react-helmet-async';
 import { useCookies } from 'react-cookie';
 
 import './css/App.css'
+import './css/result.css'
 import { is_after_pm5 } from './func/date';
 import { check_cookie } from './func/cookie';
-import { dp_run, dp_type } from './func/dp';
+import { dp_run } from './func/dp';
 import { input_format } from './func/user_input';
+import { result_data, get_result } from './func/result';
 import { cookie_date } from './variable/cookie';
 
 interface CookieSetting {
@@ -19,7 +21,8 @@ interface CookieSetting {
 
 const Home = () => {
 	const [cookies, setCookie, removeCookie] = useCookies(["class_count", "user_number"]);
-	const [result, setResult] = useState<dp_type>({});
+	const [result, setResult] = useState(NaN);
+	const [result_format, setResultFormat] = useState<result_data>({ class: "", message: "" });
 	const [run_date, setRunDate] = useState<dayjs.Dayjs>(dayjs());
 
 	const format_cookie = () => {
@@ -57,14 +60,19 @@ const Home = () => {
 			<br />
 			<br />
 			<button onClick={() => {
-				setResult({});
+				setResult(NaN);
+				setResultFormat({ class: "", message: "" })
 				format_cookie();
 				if (check_cookie()) {
-					setResult(dp_run(Number(cookies.class_count), run_date));
+					const ans = dp_run(Number(cookies.class_count), run_date);
+					setResult(ans[Number(cookies.user_number)]);
+					setResultFormat(get_result(ans[Number(cookies.user_number)]));
 				}
 			}}>Check</button>
 
-			<h1 id='result'>{result[Number(cookies.user_number)]}</h1>
+			<h2>あなたの安全度は...</h2>
+			<h1 id='result' className={result_format.class}>{Number.isNaN(result) ? "未測定" : result}</h1>
+			<p className={result_format.class} style={{ fontSize: "20px" }}>{result_format.message}</p>
 		</>
 	)
 }
