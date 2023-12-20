@@ -18,8 +18,8 @@ export const dp_run = (class_count: number, date: dayjs.Dayjs = dayjs(is_after_p
 	// dp初期化
 	let dp: dp_type = {};
 
-	const [m, d] = get_month_day(date);
-	dp = { [m]: 0, [d]: 0 };
+	const [y, m, d] = get_month_day(date);
+	dp = { [y]: 1.5, [m]: 0.25, [d]: 0 };
 
 	// Queue初期化	
 	const q = new Queue<number>();
@@ -35,7 +35,7 @@ export const dp_run = (class_count: number, date: dayjs.Dayjs = dayjs(is_after_p
 			for (let func_at = 0; func_at < func_dp.length; ++func_at) {
 				const A = q.front(), B = Number(prev[b]);
 
-				if (A === B) {
+				if (prev.length !== 1 && A === B) {
 					continue;
 				}
 
@@ -58,9 +58,7 @@ export const dp_run = (class_count: number, date: dayjs.Dayjs = dayjs(is_after_p
 				if (result > class_count) {
 					value += 0.5;
 					result = math.mod(result, class_count);
-					if (result === 0) {
-						result = class_count;
-					}
+					result++;
 				}
 
 				// 小数
@@ -83,11 +81,12 @@ export const dp_run = (class_count: number, date: dayjs.Dayjs = dayjs(is_after_p
 			}
 		}
 
-		// console.log(q.size());
 
 		dat.erase(q.front());
 		q.pop();
 	}
+
+	console.log(dp);
 
 	return dp;
 };
