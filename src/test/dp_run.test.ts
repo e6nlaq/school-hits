@@ -11,6 +11,7 @@ describe('roop', () => {
 			const plus = Number(m > i) + Number(d > i) + Number(y > i);
 
 			const result = dp_run(i);
+			console.log(i, plus, y, m, d);
 			expect(Object.keys(result).length).toBeLessThanOrEqual(i + plus);
 		}
 	});

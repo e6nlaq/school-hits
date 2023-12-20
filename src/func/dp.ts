@@ -54,17 +54,16 @@ export const dp_run = (class_count: number, date: dayjs.Dayjs = dayjs(is_after_p
 					result = math.abs(result);
 				}
 
-				// クラスの人数より多い
-				if (result > class_count) {
-					value += 0.5;
-					result = math.mod(result, class_count);
-					result++;
-				}
-
 				// 小数
 				if (!math.isInteger(result)) {
 					value += 0.5;
 					result = math.round(result);
+				}
+
+				// クラスの人数より多い
+				if (result > class_count) {
+					value += 0.5;
+					result = math.mod(result, class_count) + 1;
 				}
 
 				// 0・NaN・Infinity
