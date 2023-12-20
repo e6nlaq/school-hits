@@ -19,10 +19,10 @@ export const is_after_pm5 = (date: dayjs.Dayjs): string => {
 }
 
 /**
- * 与えられた日時から、月と日を取得する
+ * 与えられた日時から、年と月と日を取得する
  * @param date 取得する日時
- * @returns [月, 日]をnumber[]で返す
+ * @returns [年, 月, 日]をnumber[]で返す
  */
 export const get_month_day = (date: dayjs.Dayjs): number[] => {
-	return [date.month() + 1, date.date()];
+	return [date.year(), date.month() + 1, date.date()];
 }
