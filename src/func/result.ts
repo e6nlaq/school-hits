@@ -1,9 +1,17 @@
 
+// リザルトの型
+// class: 表示する文字のクラス
+// message: 下に表示するメッセージ
 export interface result_data {
 	class: string,
 	message: string,
 }
 
+/**
+ * 結果からユーザーに見せる形式を指定する
+ * @param result dpの結果
+ * @returns {result_data} ユーザーに見せる形式
+ */
 export const get_result = (result: number): result_data => {
 	if (result === 0) {
 		return {

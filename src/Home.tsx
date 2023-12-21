@@ -26,6 +26,7 @@ const Home = () => {
 	const [run_date, setRunDate] = useState<dayjs.Dayjs>(dayjs());
 
 	const format_cookie = () => {
+		// 各Cookieの最小値や最大値の設定
 		const cookie_list: CookieSetting[] = [
 			{ name: "class_count", min: 1, max: 100 },
 			{ name: "user_number", min: 1, max: Number(cookies.class_count ?? 3776) },
@@ -36,6 +37,7 @@ const Home = () => {
 				continue;
 			}
 
+			// Cookieが存在するときとしない時で場合分け
 			if (cookies[cookie_list[i].name] === undefined) {
 				setCookie(cookie_list[i].name, String(cookie_list[i].min), { maxAge: cookie_date });
 			} else {
@@ -60,10 +62,14 @@ const Home = () => {
 			<br />
 			<br />
 			<button onClick={() => {
+				// ユーザーに見せるメッセージを消去
 				setResult(NaN);
 				setResultFormat({ class: "", message: "" })
+
+				// 設定を整形
 				format_cookie();
 				if (check_cookie()) {
+					// 実行
 					const ans = dp_run(Number(cookies.class_count), run_date);
 					setResult(ans[Number(cookies.user_number)]);
 					setResultFormat(get_result(ans[Number(cookies.user_number)]));

@@ -7,6 +7,7 @@ import Cookies from "js-cookie";
 import { func_dp } from "../variable/func_dp";
 import { get_month_day, is_after_pm5 } from "./date";
 
+// keyが数値のオブジェクト型
 export interface dp_type {
 	[key: number]: number;
 }
