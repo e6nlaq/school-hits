@@ -1,7 +1,8 @@
 
 import dayjs from "dayjs";
-import * as math from 'mathjs';
+import * as math from "mathjs";
 import { Queue, HashSet } from "tstl";
+import Cookies from "js-cookie";
 
 import { func_dp } from "../variable/func_dp";
 import { get_month_day, is_after_pm5 } from "./date";
@@ -19,7 +20,15 @@ export const dp_run = (class_count: number, date: dayjs.Dayjs = dayjs(is_after_p
 	let dp: dp_type = {};
 
 	const [y, m, d] = get_month_day(date);
-	dp = { [y]: 1.5, [m]: 0.25, [d]: 0 };
+	dp = { [d]: 0 };
+
+	if (Cookies.get("year_in") === "true") {
+		dp[y] = 1.5;
+	}
+
+	if (Cookies.get("month_in") === "true") {
+		dp[m] = 0.25;
+	}
 
 	// Queue初期化	
 	const q = new Queue<number>();
