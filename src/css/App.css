@@ -65,3 +65,7 @@ button:focus,
 button:focus-visible {
 	outline: 16px auto -webkit-focus-ring-color;
 }
+
+input[type="checkbox"] {
+	cursor: pointer;
+}
