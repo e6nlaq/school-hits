@@ -1,6 +1,7 @@
 
-import './css/index.css'
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
+
+import './css/index.css'
 import Home from './Home'
 import Setting from './Setting'
 

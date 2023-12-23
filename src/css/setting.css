@@ -1,0 +1,8 @@
+.init_settings {
+	display: flex;
+	flex-direction: column;
+}
+
+.init_settings>label:nth-child(1) {
+	margin: 5px;
+}
