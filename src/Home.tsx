@@ -7,7 +7,6 @@ import { useCookies } from 'react-cookie';
 import './css/App.css'
 import './css/result.css'
 import { is_after_pm5 } from './func/date';
-import { check_cookie } from './func/cookie';
 import { dp_run } from './func/dp';
 import { input_format } from './func/user_input';
 import { result_data, get_result } from './func/result';
@@ -66,14 +65,13 @@ const Home = () => {
 				setResult(NaN);
 				setResultFormat({ class: "", message: "" })
 
-				// 設定を整形
+				// Cookieを整形
 				format_cookie();
-				if (check_cookie()) {
-					// 実行
-					const ans = dp_run(Number(cookies.class_count), run_date);
-					setResult(ans[Number(cookies.user_number)]);
-					setResultFormat(get_result(ans[Number(cookies.user_number)]));
-				}
+
+				// 実行
+				const ans = dp_run(Number(cookies.class_count), run_date);
+				setResult(ans[Number(cookies.user_number)]);
+				setResultFormat(get_result(ans[Number(cookies.user_number)]));
 			}}>Check</button>
 
 			<h2>あなたの安全度は...</h2>

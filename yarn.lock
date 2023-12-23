@@ -263,7 +263,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
 
-"@babel/runtime@^7.23.6":
+"@babel/runtime@^7.16.7", "@babel/runtime@^7.23.6":
   version "7.23.6"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.23.6.tgz#c05e610dc228855dc92ef1b53d07389ed8ab521d"
   integrity sha512-zHd0eUrf5GZoOWVCXp6koAKQTfZV07eit6bGPmJgnZdnSAvvZee6zniW2XMF7Cmc4ISOOnPy3QaSiIJGJkVEDQ==
@@ -455,6 +455,25 @@
   version "8.56.0"
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.56.0.tgz#ef20350fec605a7f7035a01764731b2de0f3782b"
   integrity sha512-gMsVel9D7f2HLkBma9VbtzZRehRogVRfbr++f06nL2vnCGCNlzOD+/MUov/F4p8myyAHspEhVobgjpX64q5m6A==
+
+"@geist-ui/core@^2.3.8":
+  version "2.3.8"
+  resolved "https://registry.yarnpkg.com/@geist-ui/core/-/core-2.3.8.tgz#bc2bae61b8d478d61a045d776455ba5a3dc7472e"
+  integrity sha512-OKwGgTA4+fBM41eQbqDoUj4XBycZbYH7Ynrn6LPO5yKX7zeWPu/R7HN3vB4/oHt34VTDQI5sDNb1SirHvNyB5w==
+  dependencies:
+    "@babel/runtime" "^7.16.7"
+
+"@geist-ui/icons@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@geist-ui/icons/-/icons-1.0.2.tgz#00eba846fb21ce4f26601be5ef181f2374c00887"
+  integrity sha512-Npfa0NW6fQ31qw/+iMPWbs1hAcJ/3FqBjSLYgEfITDqy/3TJFpFKeVyK04AC/hTmYTsdNruVYczqPNcham5FOQ==
+
+"@geist-ui/react@^2.2.5":
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/@geist-ui/react/-/react-2.2.5.tgz#769f76d70e988cd1d75ab8499e71972804535e75"
+  integrity sha512-yPBAweYVh5HXXJ6W5ont/z6UObbfsjesg0/KTfcJzc64/zjGgp+wv2zLIdReGOTAj2R4XWoNSirNGGbQnwFe6w==
+  dependencies:
+    "@babel/runtime" "^7.16.7"
 
 "@humanwhocodes/config-array@^0.11.13":
   version "0.11.13"
