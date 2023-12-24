@@ -1,8 +1,7 @@
+import dayjs from 'dayjs';
 
-import dayjs from "dayjs";
-
-import { dp_run } from "../func/dp";
-import { get_month_day, is_after_pm5 } from "../func/date";
+import { dp_run } from '../func/dp';
+import { get_month_day, is_after_pm5 } from '../func/date';
 
 describe('roop', () => {
 	test.concurrent('length', () => {

@@ -1,6 +1,11 @@
 import * as math from 'mathjs';
 
-export const func_dp = [
+interface func_type {
+	0: (a: number, b: number) => number;
+	1: number;
+}
+
+export const func_dp: func_type[] = [
 	// 足し算
 	[(a: number, b: number) => math.add(a, b), 1],
 

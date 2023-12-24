@@ -1,5 +1,4 @@
-
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
 import isSameOfAfter from 'dayjs/plugin/isSameOrAfter';
 
 // Plugin
@@ -12,11 +11,11 @@ dayjs.extend(isSameOfAfter);
  */
 export const is_after_pm5 = (date: dayjs.Dayjs): string => {
 	if (date.isSameOrAfter(date.startOf('day').add(17, 'hours'))) {
-		return date.add(1, 'day').startOf('day').format("YYYY-MM-DD");
+		return date.add(1, 'day').startOf('day').format('YYYY-MM-DD');
 	} else {
-		return date.startOf('day').format("YYYY-MM-DD");
+		return date.startOf('day').format('YYYY-MM-DD');
 	}
-}
+};
 
 /**
  * 与えられた日時から、年と月と日を取得する
@@ -25,4 +24,4 @@ export const is_after_pm5 = (date: dayjs.Dayjs): string => {
  */
 export const get_month_day = (date: dayjs.Dayjs): number[] => {
 	return [date.year(), date.month() + 1, date.date()];
-}
+};

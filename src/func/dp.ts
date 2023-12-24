@@ -1,20 +1,24 @@
+import dayjs from 'dayjs';
+import * as math from 'mathjs';
+import { Queue, HashSet } from 'tstl';
+import Cookies from 'js-cookie';
 
-import dayjs from "dayjs";
-import * as math from "mathjs";
-import { Queue, HashSet } from "tstl";
-import Cookies from "js-cookie";
-
-import { func_dp } from "../variable/func_dp";
-import { get_month_day, is_after_pm5 } from "./date";
+import { func_dp } from '../variable/func_dp';
+import { get_month_day, is_after_pm5 } from './date';
 
 // keyが数値のオブジェクト型
 export interface dp_type {
 	[key: number]: number;
 }
 
-export const dp_run = (class_count: number, date: dayjs.Dayjs = dayjs(is_after_pm5(dayjs()))): dp_type => {
+export const dp_run = (
+	class_count: number,
+	date: dayjs.Dayjs = dayjs(is_after_pm5(dayjs())),
+): dp_type => {
 	if (!math.isInteger(class_count) || math.isNegative(class_count)) {
-		throw new RangeError(`引数は非負整数である必要があります。(値: ${class_count})`);
+		throw new RangeError(
+			`引数は非負整数である必要があります。(値: ${class_count})`,
+		);
 	}
 
 	// dp初期化
@@ -23,15 +27,15 @@ export const dp_run = (class_count: number, date: dayjs.Dayjs = dayjs(is_after_p
 	const [y, m, d] = get_month_day(date);
 	dp = { [d]: 0 };
 
-	if (Cookies.get("year_in") === "true") {
+	if (Cookies.get('year_in') === 'true') {
 		dp[y] = 1.5;
 	}
 
-	if (Cookies.get("month_in") === "true") {
+	if (Cookies.get('month_in') === 'true') {
 		dp[m] = 0.25;
 	}
 
-	// Queue初期化	
+	// Queue初期化
 	const q = new Queue<number>();
 	q.push(m, d);
 
@@ -43,16 +47,19 @@ export const dp_run = (class_count: number, date: dayjs.Dayjs = dayjs(is_after_p
 
 		for (let b = 0; b < prev.length; ++b) {
 			for (let func_at = 0; func_at < func_dp.length; ++func_at) {
-				const A = q.front(), B = Number(prev[b]);
+				const A = q.front(),
+					B = Number(prev[b]);
 
 				if (prev.length !== 1 && A === B) {
 					continue;
 				}
 
-				// func_dpの各配列1番目の要素は必ず関数になることが保証されている。
-				const func = func_dp[func_at][0] as ((a: number, b: number) => number);
+				const func = func_dp[func_at][0];
 				let result = func(A, B);
-				let value = math.chain(math.max(dp[A], dp[B])).add(func_dp[func_at][1] as number).done();
+				let value = math
+					.chain(math.max(dp[A], dp[B]))
+					.add(func_dp[func_at][1] as number)
+					.done();
 
 				// *****************************
 				// 絶対に答えにならない値を省く・整形
@@ -77,7 +84,8 @@ export const dp_run = (class_count: number, date: dayjs.Dayjs = dayjs(is_after_p
 				}
 
 				// 0・NaN・Infinity
-				if (result === 0 || Number.isNaN(result) || result === Infinity) continue;
+				if (result === 0 || Number.isNaN(result) || result === Infinity)
+					continue;
 
 				if (dp[result] === undefined || dp[result] > value) {
 					dp[result] = value;
@@ -89,7 +97,6 @@ export const dp_run = (class_count: number, date: dayjs.Dayjs = dayjs(is_after_p
 				}
 			}
 		}
-
 
 		dat.erase(q.front());
 		q.pop();
