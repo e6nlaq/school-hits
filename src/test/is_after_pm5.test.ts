@@ -12,8 +12,8 @@ describe('all', () => {
 			for (let m: number = 0; m < 60; ++m) {
 				expect(
 					is_after_pm5(
-						dayjs(`2023/1/1 ${zfill(h, 2)}:${zfill(m, 2)}`),
-					),
+						dayjs(`2023/1/1 ${zfill(h, 2)}:${zfill(m, 2)}`)
+					)
 				).toBe('2023-01-02');
 			}
 		}
@@ -24,8 +24,8 @@ describe('all', () => {
 			for (let m: number = 59; m >= 0; --m) {
 				expect(
 					is_after_pm5(
-						dayjs(`2023/1/1 ${zfill(h, 2)}:${zfill(m, 2)}`),
-					),
+						dayjs(`2023/1/1 ${zfill(h, 2)}:${zfill(m, 2)}`)
+					)
 				).toBe('2023-01-01');
 			}
 		}

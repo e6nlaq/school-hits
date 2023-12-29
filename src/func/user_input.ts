@@ -9,7 +9,7 @@ export const input_format = (
 	value: number,
 	min: number,
 	max: number,
-	integer: boolean = true,
+	integer: boolean = true
 ) => {
 	if (value < min) return min;
 	else if (value > max) return max;

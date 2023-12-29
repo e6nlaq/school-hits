@@ -13,11 +13,11 @@ export interface dp_type {
 
 export const dp_run = (
 	class_count: number,
-	date: dayjs.Dayjs = dayjs(is_after_pm5(dayjs())),
+	date: dayjs.Dayjs = dayjs(is_after_pm5(dayjs()))
 ): dp_type => {
 	if (!math.isInteger(class_count) || math.isNegative(class_count)) {
 		throw new RangeError(
-			`引数は非負整数である必要があります。(値: ${class_count})`,
+			`引数は非負整数である必要があります。(値: ${class_count})`
 		);
 	}
 

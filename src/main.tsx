@@ -11,5 +11,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 				<App />
 			</HelmetProvider>
 		</CookiesProvider>
-	</React.StrictMode>,
+	</React.StrictMode>
 );

@@ -25,10 +25,10 @@ const Setting = () => {
 
 			<h2>クラスの設定</h2>
 
-			<label htmlFor="user_number">あなたの出席番号</label>
+			<label htmlFor='user_number'>あなたの出席番号</label>
 			<input
-				type="number"
-				id="user_number"
+				type='number'
+				id='user_number'
 				value={cookie.user_number}
 				min={1}
 				max={Number(cookie.class_count ?? 3776)}
@@ -42,10 +42,10 @@ const Setting = () => {
 
 			<br />
 
-			<label htmlFor="class_count">クラスの人数</label>
+			<label htmlFor='class_count'>クラスの人数</label>
 			<input
-				type="number"
-				id="class_count"
+				type='number'
+				id='class_count'
 				value={cookie.class_count}
 				min={1}
 				max={100}
@@ -59,8 +59,8 @@ const Setting = () => {
 							Number(cookie.user_number),
 							1,
 							Number(event.target.value),
-							true,
-						),
+							true
+						)
 					);
 				}}
 			/>
@@ -69,9 +69,9 @@ const Setting = () => {
 
 			<h2>初期値の設定</h2>
 
-			<div className="init_settings">
+			<div className='init_settings'>
 				<Checkbox
-					id="year_in"
+					id='year_in'
 					checked={cookie.year_in}
 					onChange={(event) =>
 						setCookie('year_in', event.target.checked, {
@@ -83,7 +83,7 @@ const Setting = () => {
 				</Checkbox>
 
 				<Checkbox
-					id="month_in"
+					id='month_in'
 					checked={cookie.month_in}
 					onChange={(event) =>
 						setCookie('month_in', event.target.checked, {
@@ -96,12 +96,11 @@ const Setting = () => {
 			</div>
 
 			<br />
-			<br />
 
 			<Button
 				auto
 				icon={<Trash2></Trash2>}
-				type="error"
+				type='error'
 				ghost
 				onClick={() => {
 					setVisible(true);
@@ -127,7 +126,7 @@ const Setting = () => {
 					キャンセル
 				</Modal.Action>
 				<Modal.Action
-					type="error"
+					type='error'
 					onClick={() => {
 						for (let i = 0; i < cookie_list.length; ++i) {
 							removeCookie(cookie_list[i]);

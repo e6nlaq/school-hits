@@ -31,7 +31,7 @@ describe('integer', () => {
 	test.concurrent('float', () => {
 		for (let value = -1000; value <= 1000; value += 0.1) {
 			expect(input_format(value, -Infinity, Infinity, true)).toBe(
-				Math.round(value),
+				Math.round(value)
 			);
 		}
 	});
@@ -60,7 +60,7 @@ describe('integer_random', () => {
 		for (let i = 0; i < random_count; ++i) {
 			const value = random.integer(
 				Number.MIN_SAFE_INTEGER,
-				Number.MAX_SAFE_INTEGER,
+				Number.MAX_SAFE_INTEGER
 			);
 			expect(input_format(value, -Infinity, Infinity, true)).toBe(value);
 		}
@@ -70,10 +70,10 @@ describe('integer_random', () => {
 		for (let i = 0; i < random_count; ++i) {
 			const value = random.real(
 				Number.MIN_SAFE_INTEGER,
-				Number.MAX_SAFE_INTEGER,
+				Number.MAX_SAFE_INTEGER
 			);
 			expect(input_format(value, -Infinity, Infinity, true)).toBe(
-				Math.round(value),
+				Math.round(value)
 			);
 		}
 	});
@@ -126,7 +126,7 @@ describe('float_random', () => {
 		for (let i = 0; i < random_count; ++i) {
 			const value = random.real(
 				Number.MIN_SAFE_INTEGER,
-				Number.MAX_SAFE_INTEGER,
+				Number.MAX_SAFE_INTEGER
 			);
 			expect(input_format(value, -Infinity, Infinity, false)).toBe(value);
 		}

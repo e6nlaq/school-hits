@@ -61,10 +61,10 @@ const Home = () => {
 						input_format(
 							Number(cookies[cookie_list[i].name]),
 							cookie_list[i].min,
-							cookie_list[i].max,
-						),
+							cookie_list[i].max
+						)
 					),
-					{ maxAge: cookie_date },
+					{ maxAge: cookie_date }
 				);
 			}
 		}
@@ -80,8 +80,8 @@ const Home = () => {
 			<br />
 
 			<input
-				type="date"
-				id="check_date"
+				type='date'
+				id='check_date'
 				defaultValue={is_after_pm5(dayjs())}
 				onChange={(event) => {
 					setRunDate(dayjs(event.target.value));
@@ -102,7 +102,7 @@ const Home = () => {
 					const ans = dp_run(Number(cookies.class_count), run_date);
 					setResult(ans[Number(cookies.user_number)]);
 					setResultFormat(
-						get_result(ans[Number(cookies.user_number)]),
+						get_result(ans[Number(cookies.user_number)])
 					);
 				}}
 			>
@@ -110,7 +110,7 @@ const Home = () => {
 			</button>
 
 			<h2>あなたの安全度は...</h2>
-			<h1 id="result" className={result_format.class}>
+			<h1 id='result' className={result_format.class}>
 				{Number.isNaN(result) ? '未測定' : result}
 			</h1>
 			<p className={result_format.class} style={{ fontSize: '20px' }}>
