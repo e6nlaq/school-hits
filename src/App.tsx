@@ -3,21 +3,22 @@ import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import './css/index.css';
 import Home from './Home';
 import Setting from './Setting';
+import About from './About';
 
 const App = () => {
 	return (
 		<>
 			<link
-				rel="stylesheet"
-				href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+				rel='stylesheet'
+				href='https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200'
 			/>
 
 			<BrowserRouter basename={import.meta.env.BASE_URL}>
-				<div id="nav" className="tab-area-base">
-					<ul className="tab-menu-base">
+				<div id='nav' className='tab-area-base'>
+					<ul className='tab-menu-base'>
 						<li>
-							<Link to="/">
-								<span className="material-symbols-rounded">
+							<Link to='/'>
+								<span className='material-symbols-rounded'>
 									home
 								</span>
 								Home
@@ -25,23 +26,30 @@ const App = () => {
 						</li>
 
 						<li>
-							<Link to="/setting">
-								<span className="material-symbols-rounded">
+							<Link to='/setting'>
+								<span className='material-symbols-rounded'>
 									settings
 								</span>
 								Setting
 							</Link>
 						</li>
+
+						<li>
+							<Link to='/about'>
+								<span className='material-symbols-rounded'>
+									info
+								</span>
+								About
+							</Link>
+						</li>
 					</ul>
 				</div>
 
-				<br />
-				<br />
-
-				<div className="main_browser">
+				<div className='main_browser'>
 					<Routes>
-						<Route path="/" element={<Home />}></Route>
-						<Route path="/setting" element={<Setting />}></Route>
+						<Route path='/' element={<Home />}></Route>
+						<Route path='/setting' element={<Setting />}></Route>
+						<Route path='/about' element={<About />}></Route>
 					</Routes>
 				</div>
 			</BrowserRouter>
