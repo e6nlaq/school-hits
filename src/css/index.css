@@ -254,6 +254,9 @@ body {
   opacity: 0.7;
 }
 
+.main_browser{
+  margin-top: 100px;
+}
 
 /* Google Icons */
 .material-symbols-rounded {

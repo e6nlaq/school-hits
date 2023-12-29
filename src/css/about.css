@@ -1,0 +1,10 @@
+
+.about>p{
+	text-align: left;
+	/* float: left; */
+	/* margin-right: auto; */
+}
+
+.about{
+	display: inline-block;
+}
