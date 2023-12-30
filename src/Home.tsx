@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useCookies } from 'react-cookie';
+import { Modal, useModal } from '@geist-ui/react';
 
 import './css/App.css';
 import './css/result.css';
@@ -15,6 +16,7 @@ interface CookieSetting {
 	name: 'class_count' | 'user_number';
 	max: number;
 	min: number;
+	setting_name: string;
 }
 
 const Home = () => {
@@ -29,16 +31,29 @@ const Home = () => {
 	});
 	const [run_date, setRunDate] = useState<dayjs.Dayjs>(dayjs());
 
+	// Modal
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const { visible: _a, setVisible, bindings } = useModal();
+	const [modal_list, setModalList] = useState<string[]>([]);
+
 	const format_cookie = () => {
 		// 各Cookieの最小値や最大値の設定
 		const cookie_list: CookieSetting[] = [
-			{ name: 'class_count', min: 1, max: 100 },
+			{
+				name: 'class_count',
+				min: 1,
+				max: 100,
+				setting_name: 'クラスの人数',
+			},
 			{
 				name: 'user_number',
 				min: 1,
 				max: Number(cookies.class_count ?? 3776),
+				setting_name: '出席番号',
 			},
 		];
+
+		const res: string[] = [];
 
 		for (let i = 0; i < cookie_list.length; ++i) {
 			if (
@@ -50,9 +65,7 @@ const Home = () => {
 
 			// Cookieが存在するときとしない時で場合分け
 			if (cookies[cookie_list[i].name] === undefined) {
-				setCookie(cookie_list[i].name, String(cookie_list[i].min), {
-					maxAge: cookie_date,
-				});
+				res.push(cookie_list[i].setting_name);
 			} else {
 				removeCookie(cookie_list[i].name);
 				setCookie(
@@ -68,6 +81,8 @@ const Home = () => {
 				);
 			}
 		}
+
+		return res;
 	};
 
 	return (
@@ -87,24 +102,34 @@ const Home = () => {
 					setRunDate(dayjs(event.target.value));
 				}}
 			/>
+
 			<br />
-			<br />
+
 			<button
 				onClick={() => {
 					// ユーザーに見せるメッセージを消去
 					setResult(NaN);
 					setResultFormat({ class: '', message: '' });
 
-					// Cookieを整形
-					format_cookie();
+					// Cookieを整形・チェック
+					const formats = format_cookie();
+					setModalList(formats);
 
-					// 実行
-					const ans = dp_run(Number(cookies.class_count), run_date);
-					setResult(ans[Number(cookies.user_number)]);
-					setResultFormat(
-						get_result(ans[Number(cookies.user_number)])
-					);
+					if (formats.length !== 0) {
+						setVisible(true);
+					} else {
+						// 実行
+						const ans = dp_run(
+							Number(cookies.class_count),
+							run_date
+						);
+						setResult(ans[Number(cookies.user_number)]);
+						setResultFormat(
+							get_result(ans[Number(cookies.user_number)])
+						);
+					}
 				}}
+				className='run_button'
 			>
 				Check
 			</button>
@@ -116,6 +141,21 @@ const Home = () => {
 			<p className={result_format.class} style={{ fontSize: '20px' }}>
 				{result_format.message}
 			</p>
+
+			<Modal {...bindings}>
+				<Modal.Title>Error</Modal.Title>
+				<Modal.Subtitle>COOKIE_NOT_FOUND</Modal.Subtitle>
+				<Modal.Content>
+					未設定の設定が{modal_list.length}件あります。(
+					{modal_list.join(', ')})
+				</Modal.Content>
+				<Modal.Action
+					onClick={() => setVisible(false)}
+					placeholder={undefined}
+				>
+					OK
+				</Modal.Action>
+			</Modal>
 		</>
 	);
 };
