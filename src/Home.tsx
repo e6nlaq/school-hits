@@ -30,7 +30,9 @@ const Home = () => {
 		class: '',
 		message: '',
 	});
-	const [run_date, setRunDate] = useState<dayjs.Dayjs>(dayjs());
+	const [run_date, setRunDate] = useState<dayjs.Dayjs>(
+		dayjs(is_after_pm5(dayjs()))
+	);
 
 	// Modal
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
