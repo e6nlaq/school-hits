@@ -30,7 +30,7 @@ const Setting = () => {
 			<input
 				type='number'
 				id='user_number'
-				value={cookie.user_number}
+				defaultValue={cookie.user_number}
 				min={1}
 				max={Number(cookie.class_count ?? 3776)}
 				disabled={cookie.class_count === undefined}
@@ -47,7 +47,7 @@ const Setting = () => {
 			<input
 				type='number'
 				id='class_count'
-				value={cookie.class_count}
+				defaultValue={cookie.class_count}
 				min={1}
 				max={100}
 				onChange={(event) => {
@@ -56,15 +56,20 @@ const Setting = () => {
 					});
 
 					if (cookie.user_number !== undefined) {
-						setCookie(
-							'user_number',
-							input_format(
-								Number(cookie.user_number),
-								1,
-								Number(event.target.value),
-								true
-							)
+						const to_change = input_format(
+							Number(cookie.user_number),
+							1,
+							Number(event.target.value),
+							true
 						);
+						setCookie('user_number', to_change, {
+							maxAge: cookie_date,
+						});
+
+						const element = document.getElementById(
+							'user_number'
+						) as HTMLInputElement;
+						element.value = String(to_change);
 					}
 				}}
 			/>
