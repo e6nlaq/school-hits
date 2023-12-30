@@ -101,10 +101,12 @@ const Home = () => {
 			<input
 				type='date'
 				id='check_date'
+				name='check_date'
 				defaultValue={is_after_pm5(dayjs())}
 				onChange={(event) => {
 					setRunDate(dayjs(event.target.value));
 				}}
+				alt='実行する日付'
 			/>
 
 			<br />
