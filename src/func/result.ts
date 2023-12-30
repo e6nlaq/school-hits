@@ -40,7 +40,7 @@ export const get_result = (result: number): result_data => {
 	} else {
 		return {
 			class: 'result_safe',
-			message: 'ほぼ安全!でも油断は禁物!頑張って!',
+			message: 'ほぼ安全!',
 		};
 	}
 };
