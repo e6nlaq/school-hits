@@ -53,15 +53,18 @@ const Setting = () => {
 					setCookie('class_count', event.target.value, {
 						maxAge: cookie_date,
 					});
-					setCookie(
-						'user_number',
-						input_format(
-							Number(cookie.user_number),
-							1,
-							Number(event.target.value),
-							true
-						)
-					);
+
+					if (cookie.user_number !== undefined) {
+						setCookie(
+							'user_number',
+							input_format(
+								Number(cookie.user_number),
+								1,
+								Number(event.target.value),
+								true
+							)
+						);
+					}
 				}}
 			/>
 
