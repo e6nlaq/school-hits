@@ -12,6 +12,7 @@ const cookie_list = ['user_number', 'class_count', 'year_in', 'month_in'];
 
 const Setting = () => {
 	const [cookie, setCookie, removeCookie] = useCookies(cookie_list);
+
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const { visible: _a, setVisible, bindings } = useModal();
 
