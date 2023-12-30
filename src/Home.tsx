@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useCookies } from 'react-cookie';
 import { Modal, useModal } from '@geist-ui/react';
+import { Link } from 'react-router-dom';
 
 import './css/App.css';
 import './css/result.css';
@@ -92,6 +93,9 @@ const Home = () => {
 			</Helmet>
 
 			<h1>School Hit</h1>
+			<Link to='/about'>使い方はこちら</Link>
+
+			<br />
 			<br />
 
 			<input
