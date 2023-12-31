@@ -5,46 +5,42 @@ import * as math from 'mathjs';
 interface func_type {
 	0: (a: number, b: number) => number;
 	1: number;
+	2: (a: string, b: string) => string;
+}
+
+const bracket = (a: string) => {
+	return /^-?\d+$/.test(a)?a:`(${a})`;
 }
 
 export const func_dp: func_type[] = [
 	// 足し算
-	[(a: number, b: number) => math.add(a, b), 1],
+	[(a, b) => math.add(a, b), 0.5, (a, b) =>`${bracket(a)} + ${bracket(b)}`],
 
 	// 引き算
-	[(a: number, b: number) => math.subtract(a, b), 1],
+	[(a, b) => math.subtract(a, b), 0.5, (a, b) =>`${bracket(a)} - ${bracket(b)}`],
 
 	// 掛け算
-	[(a: number, b: number) => math.multiply(a, b), 1],
+	[(a, b) => math.multiply(a, b), 1, (a, b) => `${bracket(a)} \\times ${bracket(b)}`],
 
 	// 割り算
-	[(a: number, b: number) => math.divide(a, b), 1],
+	[(a, b) => math.divide(a, b), 1, (a, b) => `${bracket(a)} \\div ${bracket(b)}`],
 
 	// mod
-	[(a: number, b: number) => math.mod(a, b), 1],
+	[(a, b) => math.mod(a, b), 1, (a, b) => `${a} \\mod ${b}`],
 
 	// 最大公約数
-	[(a: number, b: number) => math.gcd(a, b), 2],
+	[(a, b) => math.gcd(a, b), 2, (a, b) => `gcd(${a},${b})`],
 
 	// 最小公倍数
-	[(a: number, b: number) => math.lcm(a, b), 2],
+	[(a, b) => math.lcm(a, b), 2, (a, b) => `lcm(${a},${b})`],
 
 	// log
-	[(a: number, b: number) => math.log(a, b), 2],
+	[(a: number, b: number) => math.log(a, b), 2,(a,b)=>`log{${b}} ${a}`],
 
 	// =====================
 	// 一つの値シリーズ
 	// =====================
 
 	// 平方根
-	[(a: number, _b: number) => Number(math.sqrt(a)), 1.5],
-
-	// sin
-	[(a: number, _b: number) => math.sin(a), 3],
-
-	// cos
-	[(a: number, _b: number) => math.cos(a), 3],
-
-	// tan
-	[(a: number, _b: number) => math.tan(a), 3],
+	[(a, _b) => Number(math.sqrt(a)), 1.5, (a, _b) => `\\sqrt{${a}}`],
 ];

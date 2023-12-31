@@ -20,19 +20,19 @@ export const get_result = (result: number): result_data => {
 	} else if (result < 1) {
 		return {
 			class: 'result_orangered',
-			message: '休みがいたら当たる可能性大',
+			message: '当たる可能性大',
 		};
 	} else if (result === 1) {
 		return {
 			class: 'result_orange',
 			message: '先生によっては確実に当たる',
 		};
-	} else if (result <= 2) {
+	} else if (result <= 1.5) {
 		return {
 			class: 'result_yellow',
 			message: '運が悪いと当たるかも?',
 		};
-	} else if (result <= 3) {
+	} else if (result < 3) {
 		return {
 			class: 'result_rime',
 			message: 'ほぼ当たらないはず...',
@@ -40,7 +40,7 @@ export const get_result = (result: number): result_data => {
 	} else {
 		return {
 			class: 'result_safe',
-			message: 'ほぼ安全!',
+			message: '安全地帯!',
 		};
 	}
 };
