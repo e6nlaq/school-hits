@@ -18,12 +18,12 @@ describe('roop', () => {
 describe('option', () => {
 	test.concurrent('year', () => {
 		const result = dp_run(100, dayjs('2024-1-1'), true, false);
-		expect(result[2024]).toBe(0);
+		expect(result[2024].value).toBe(0);
 	});
 
 	test.concurrent('month', () => {
 		const result = dp_run(100, dayjs('2024-1-1'), false, true);
 
-		expect(result[1]).toBe(0);
+		expect(result[1].value).toBe(0);
 	});
 });
