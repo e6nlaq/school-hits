@@ -5,9 +5,14 @@ import { Queue, HashSet } from 'tstl';
 import { func_dp } from '../variable/func_dp';
 import { get_dates } from './date';
 
+export interface dp_values{
+	value: number;
+	equa:string
+}
+
 // keyが数値のオブジェクト型
 export interface dp_type {
-	[key: number]: number;
+	[key: number]: dp_values;
 }
 
 /**
@@ -34,19 +39,22 @@ export const dp_run = (
 	let dp: dp_type = {};
 
 	const [y, m, d] = get_dates(date);
-	dp = { [d]: 0 };
-
-	if (year) {
-		dp[y] = 1.5;
-	}
-
-	if (month) {
-		dp[m] = 0.5;
-	}
+	dp = { [d]: {value:0,equa:`${d}`} };
 
 	// Queue初期化
 	const q = new Queue<number>();
-	q.push(m, d);
+	q.push(d);
+
+	if (year) {
+		dp[y] = { value: 0, equa: `${y}` };
+		q.push(y);
+	}
+
+	if (month) {
+		dp[m] = { value: 0, equa: `${m}` };
+		q.push(m);
+	}
+
 
 	// HashSet初期化
 	const dat = new HashSet<number>([m, d]);
@@ -64,11 +72,18 @@ export const dp_run = (
 				}
 
 				const func = func_dp[func_at][0];
+				const equa_func = func_dp[func_at][2];
+
+				if (dp[A] === undefined || dp[B] === undefined) {
+					throw new Error(`${JSON.stringify(dp)} ${A} ${B}`);
+				}
+
 				let result = func(A, B);
 				let value = math
-					.chain(math.max(dp[A], dp[B]))
-					.add(func_dp[func_at][1] as number)
+					.chain(math.max(dp[A].value, dp[B].value))
+					.add(func_dp[func_at][1])
 					.done();
+				let equa = equa_func(dp[A].equa,dp[B].equa);
 
 				// *****************************
 				// 絶対に答えにならない値を省く・整形
@@ -76,28 +91,34 @@ export const dp_run = (
 
 				// 0未満
 				if (result < 0) {
-					value =math.add(value,0.5);
+					value = math.add(value, 0.5);
 					result = math.abs(result);
+					equa="| "+equa+" |"
 				}
 
 				// 小数
 				if (!math.isInteger(result)) {
-					value =math.add(value,0.1);
+					value = math.add(value, 0.1);
 					result = math.floor(result);
+					equa="\\lfloor "+equa+" \\rfloor"
 				}
 
 				// クラスの人数より多い
 				if (result > class_count) {
-					value=math.add(value,0.3);
+					value = math.add(value, 0.3);
 					result = math.mod(result, class_count) + 1;
+					equa = `[ \\{(${equa}) \\mod ${class_count} \\} + 1 ]`;
 				}
 
 				// 0・NaN・Infinity
 				if (result === 0 || Number.isNaN(result) || result === Infinity)
 					continue;
 
-				if (dp[result] === undefined || dp[result] > value) {
-					dp[result] = math.round(value,2);
+				if (dp[result] === undefined || dp[result].value > value) {
+					if (dp[result] === undefined) dp[result] = { value: -1, equa:"???" };
+
+					dp[result].value = math.round(value, 2);
+					dp[result].equa = equa;
 
 					if (!dat.has(result)) {
 						q.push(result);

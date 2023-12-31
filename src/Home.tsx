@@ -4,6 +4,8 @@ import { Helmet } from 'react-helmet-async';
 import { useCookies } from 'react-cookie';
 import { Modal, useModal } from '@geist-ui/react';
 import { Link } from 'react-router-dom';
+import { BlockMath } from 'react-katex';
+import 'katex/dist/katex.min.css';
 
 import './css/App.css';
 import './css/result.css';
@@ -32,6 +34,7 @@ const Home = () => {
 		class: '',
 		message: '',
 	});
+	const [equa, setEqua] = useState('');
 	const [run_date, setRunDate] = useState<dayjs.Dayjs>(
 		dayjs(is_after_pm5(dayjs()))
 	);
@@ -135,10 +138,11 @@ const Home = () => {
 							Boolean(cookies.year_in),
 							Boolean(cookies.month_in)
 						);
-						setResult(ans[Number(cookies.user_number)]);
+						setResult(ans[Number(cookies.user_number)].value);
 						setResultFormat(
-							get_result(ans[Number(cookies.user_number)])
+							get_result(ans[Number(cookies.user_number)].value)
 						);
+						setEqua(ans[Number(cookies.user_number)].equa);
 					}
 				}}
 				className='run_button'
@@ -150,6 +154,7 @@ const Home = () => {
 			<h1 id='result' className={result_format.class}>
 				{Number.isNaN(result) ? '未測定' : result}
 			</h1>
+			<BlockMath math={equa}></BlockMath>
 			<p className={result_format.class} style={{ fontSize: '20px' }}>
 				{result_format.message}
 			</p>
