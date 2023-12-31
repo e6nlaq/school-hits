@@ -1,19 +1,28 @@
 import dayjs from 'dayjs';
 import * as math from 'mathjs';
 import { Queue, HashSet } from 'tstl';
-import Cookies from 'js-cookie';
 
 import { func_dp } from '../variable/func_dp';
-import { get_month_day, is_after_pm5 } from './date';
+import { get_dates } from './date';
 
 // keyが数値のオブジェクト型
 export interface dp_type {
 	[key: number]: number;
 }
 
+/**
+ * dp?を実行する
+ * @param class_count クラスの人数
+ * @param date 計算する元の日付
+ * @param year 年を初期値に含むか
+ * @param month 月を初期値に含むか
+ * @returns {{[key:number]:number}}
+ */
 export const dp_run = (
 	class_count: number,
-	date: dayjs.Dayjs = dayjs(is_after_pm5(dayjs()))
+	date: dayjs.Dayjs,
+	year: boolean,
+	month: boolean
 ): dp_type => {
 	if (!math.isInteger(class_count) || math.isNegative(class_count)) {
 		throw new RangeError(
@@ -24,15 +33,15 @@ export const dp_run = (
 	// dp初期化
 	let dp: dp_type = {};
 
-	const [y, m, d] = get_month_day(date);
+	const [y, m, d] = get_dates(date);
 	dp = { [d]: 0 };
 
-	if (Cookies.get('year_in') === 'true') {
+	if (year) {
 		dp[y] = 1.5;
 	}
 
-	if (Cookies.get('month_in') === 'true') {
-		dp[m] = 0.25;
+	if (month) {
+		dp[m] = 0.5;
 	}
 
 	// Queue初期化
@@ -67,19 +76,19 @@ export const dp_run = (
 
 				// 0未満
 				if (result < 0) {
-					value += 0.5;
+					value =math.add(value,0.5);
 					result = math.abs(result);
 				}
 
 				// 小数
 				if (!math.isInteger(result)) {
-					value += 0.5;
-					result = math.round(result);
+					value =math.add(value,0.1);
+					result = math.floor(result);
 				}
 
 				// クラスの人数より多い
 				if (result > class_count) {
-					value += 0.5;
+					value=math.add(value,0.3);
 					result = math.mod(result, class_count) + 1;
 				}
 
@@ -88,7 +97,7 @@ export const dp_run = (
 					continue;
 
 				if (dp[result] === undefined || dp[result] > value) {
-					dp[result] = value;
+					dp[result] = math.round(value,2);
 
 					if (!dat.has(result)) {
 						q.push(result);

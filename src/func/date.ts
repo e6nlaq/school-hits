@@ -22,6 +22,6 @@ export const is_after_pm5 = (date: dayjs.Dayjs): string => {
  * @param date 取得する日時
  * @returns [年, 月, 日]をnumber[]で返す
  */
-export const get_month_day = (date: dayjs.Dayjs): number[] => {
+export const get_dates = (date: dayjs.Dayjs): number[] => {
 	return [date.year(), date.month() + 1, date.date()];
 };

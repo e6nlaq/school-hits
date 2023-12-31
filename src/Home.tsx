@@ -24,6 +24,8 @@ const Home = () => {
 	const [cookies, setCookie, removeCookie] = useCookies([
 		'class_count',
 		'user_number',
+		'year_in',
+		'month_in',
 	]);
 	const [result, setResult] = useState(NaN);
 	const [result_format, setResultFormat] = useState<result_data>({
@@ -129,7 +131,9 @@ const Home = () => {
 						// 実行
 						const ans = dp_run(
 							Number(cookies.class_count),
-							run_date
+							run_date,
+							Boolean(cookies.year_in),
+							Boolean(cookies.month_in)
 						);
 						setResult(ans[Number(cookies.user_number)]);
 						setResultFormat(
