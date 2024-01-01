@@ -25,7 +25,7 @@ export const get_result = (result: number): result_data => {
 	} else if (result === 1) {
 		return {
 			class: 'result_orange',
-			message: '先生によっては確実に当たる',
+			message: '先生によってはまあまあ当たる',
 		};
 	} else if (result <= 1.5) {
 		return {

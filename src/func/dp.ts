@@ -46,7 +46,7 @@ export const dp_run = (
 	q.push(d);
 
 	if (year) {
-		dp[y] = { value: 0, equa: `${y}` };
+		dp[y] = { value: 0.7, equa: `${y}` };
 		q.push(y);
 	}
 
@@ -67,10 +67,6 @@ export const dp_run = (
 				const A = q.front(),
 					B = Number(prev[b]);
 
-				if (prev.length !== 1 && A === B) {
-					continue;
-				}
-
 				const func = func_dp[func_at][0];
 				const equa_func = func_dp[func_at][2];
 
@@ -80,34 +76,34 @@ export const dp_run = (
 
 				let result = func(A, B);
 				let value = math
-					.chain(math.max(dp[A].value, dp[B].value))
+					.chain(math.add(dp[A].value, dp[B].value))
 					.add(func_dp[func_at][1])
 					.done();
-				let equa = equa_func(dp[A].equa,dp[B].equa);
-
+				let equa = equa_func(dp[A].equa, dp[B].equa);
+				
 				// *****************************
 				// 絶対に答えにならない値を省く・整形
 				// *****************************
 
 				// 0未満
 				if (result < 0) {
-					value = math.add(value, 0.5);
+					value = math.add(value, 0.3);
 					result = math.abs(result);
 					equa="| "+equa+" |"
 				}
 
 				// 小数
 				if (!math.isInteger(result)) {
-					value = math.add(value, 0.1);
+					value = math.add(value, 0.2);
 					result = math.floor(result);
 					equa="\\lfloor "+equa+" \\rfloor"
 				}
 
 				// クラスの人数より多い
 				if (result > class_count) {
-					value = math.add(value, 0.3);
+					value = math.add(value, 0.7);
 					result = math.mod(result, class_count) + 1;
-					equa = `[ \\{(${equa}) \\mod ${class_count} \\} + 1 ]`;
+					equa = `\\{(${equa}) \\mod ${class_count} \\} + 1`;
 				}
 
 				// 0・NaN・Infinity

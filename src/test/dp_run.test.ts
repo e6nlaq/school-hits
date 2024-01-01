@@ -18,7 +18,7 @@ describe('roop', () => {
 describe('option', () => {
 	test.concurrent('year', () => {
 		const result = dp_run(100, dayjs('2024-1-1'), true, false);
-		expect(result[2024].value).toBe(0);
+		expect(result[2024].value).toBe(0.7);
 	});
 
 	test.concurrent('month', () => {

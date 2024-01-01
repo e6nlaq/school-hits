@@ -3,7 +3,7 @@
 import * as math from 'mathjs';
 
 interface func_type {
-	0: (a: number, b: number) => number;
+	0: (a: number, b: number) =>number;
 	1: number;
 	2: (a: string, b: string) => string;
 }
@@ -20,13 +20,19 @@ export const func_dp: func_type[] = [
 	[(a, b) => math.subtract(a, b), 0.5, (a, b) =>`${bracket(a)} - ${bracket(b)}`],
 
 	// 掛け算
-	[(a, b) => math.multiply(a, b), 1, (a, b) => `${bracket(a)} \\times ${bracket(b)}`],
+	[(a, b) => math.multiply(a, b), 0.8, (a, b) => `${bracket(a)} \\times ${bracket(b)}`],
 
 	// 割り算
 	[(a, b) => math.divide(a, b), 1, (a, b) => `${bracket(a)} \\div ${bracket(b)}`],
 
 	// mod
 	[(a, b) => math.mod(a, b), 1, (a, b) => `${a} \\mod ${b}`],
+
+	// べき乗
+	[(a, b) => {
+		if (a <= 12 && b <= 12) return Number(math.pow(a, b));
+		else return NaN;
+	},1,(a, b) => `{${bracket(a)}}^{${b}}`],
 
 	// 最大公約数
 	[(a, b) => math.gcd(a, b), 2, (a, b) => `gcd(${a},${b})`],
