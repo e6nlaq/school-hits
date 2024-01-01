@@ -35,14 +35,23 @@ const Home = () => {
 		message: '',
 	});
 	const [equa, setEqua] = useState('');
-	const [run_date, setRunDate] = useState<dayjs.Dayjs>(
-		dayjs(is_after_pm5(dayjs()))
-	);
+	const [run_date, setRunDate] = useState(is_after_pm5(dayjs()));
 
 	// Modal
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const { visible: _a, setVisible, bindings } = useModal();
+	const {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		visible: _a,
+		setVisible: setCookieVisible,
+		bindings: bindings_cookie,
+	} = useModal();
 	const [modal_list, setModalList] = useState<string[]>([]);
+
+	const {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		visible: _b,
+		setVisible: setInputVisible,
+		bindings: bindings_input,
+	} = useModal();
 
 	const format_cookie = () => {
 		// 各Cookieの最小値や最大値の設定
@@ -111,7 +120,7 @@ const Home = () => {
 				name='check_date'
 				defaultValue={is_after_pm5(dayjs())}
 				onChange={(event) => {
-					setRunDate(dayjs(event.target.value));
+					setRunDate(event.target.value);
 				}}
 				alt='実行する日付'
 			/>
@@ -129,12 +138,14 @@ const Home = () => {
 					setModalList(formats);
 
 					if (formats.length !== 0) {
-						setVisible(true);
+						setCookieVisible(true);
+					} else if (run_date === '') {
+						setInputVisible(true);
 					} else {
 						// 実行
 						const ans = dp_run(
 							Number(cookies.class_count),
-							run_date,
+							dayjs(run_date),
 							Boolean(cookies.year_in),
 							Boolean(cookies.month_in)
 						);
@@ -159,7 +170,9 @@ const Home = () => {
 				{result_format.message}
 			</p>
 
-			<Modal {...bindings}>
+			{/* 以下Modal */}
+
+			<Modal {...bindings_cookie}>
 				<Modal.Title>Error</Modal.Title>
 				<Modal.Subtitle>COOKIE_NOT_FOUND</Modal.Subtitle>
 				<Modal.Content>
@@ -167,7 +180,20 @@ const Home = () => {
 					{modal_list.join(', ')})
 				</Modal.Content>
 				<Modal.Action
-					onClick={() => setVisible(false)}
+					onClick={() => setCookieVisible(false)}
+					placeholder={undefined}
+				>
+					OK
+				</Modal.Action>
+			</Modal>
+
+			<Modal {...bindings_input}>
+				<Modal.Title>Error</Modal.Title>
+				<Modal.Subtitle>INPUT_BLANK</Modal.Subtitle>
+				<Modal.Content>日付を入力してください。</Modal.Content>
+
+				<Modal.Action
+					onClick={() => setInputVisible(false)}
 					placeholder={undefined}
 				>
 					OK
