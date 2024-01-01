@@ -5,9 +5,9 @@ import { Queue, HashSet } from 'tstl';
 import { func_dp } from '../variable/func_dp';
 import { get_dates } from './date';
 
-export interface dp_values{
+export interface dp_values {
 	value: number;
-	equa:string
+	equa: string;
 }
 
 // keyが数値のオブジェクト型
@@ -39,7 +39,7 @@ export const dp_run = (
 	let dp: dp_type = {};
 
 	const [y, m, d] = get_dates(date);
-	dp = { [d]: {value:0,equa:`${d}`} };
+	dp = { [d]: { value: 0, equa: `${d}` } };
 
 	// Queue初期化
 	const q = new Queue<number>();
@@ -54,7 +54,6 @@ export const dp_run = (
 		dp[m] = { value: 0, equa: `${m}` };
 		q.push(m);
 	}
-
 
 	// HashSet初期化
 	const dat = new HashSet<number>([m, d]);
@@ -80,7 +79,7 @@ export const dp_run = (
 					.add(func_dp[func_at][1])
 					.done();
 				let equa = equa_func(dp[A].equa, dp[B].equa);
-				
+
 				// *****************************
 				// 絶対に答えにならない値を省く・整形
 				// *****************************
@@ -89,14 +88,14 @@ export const dp_run = (
 				if (result < 0) {
 					value = math.add(value, 0.3);
 					result = math.abs(result);
-					equa="| "+equa+" |"
+					equa = '| ' + equa + ' |';
 				}
 
 				// 小数
 				if (!math.isInteger(result)) {
 					value = math.add(value, 0.2);
 					result = math.floor(result);
-					equa="\\lfloor "+equa+" \\rfloor"
+					equa = '\\lfloor ' + equa + ' \\rfloor';
 				}
 
 				// クラスの人数より多い
@@ -111,7 +110,8 @@ export const dp_run = (
 					continue;
 
 				if (dp[result] === undefined || dp[result].value > value) {
-					if (dp[result] === undefined) dp[result] = { value: -1, equa:"???" };
+					if (dp[result] === undefined)
+						dp[result] = { value: -1, equa: '???' };
 
 					dp[result].value = math.round(value, 2);
 					dp[result].equa = equa;

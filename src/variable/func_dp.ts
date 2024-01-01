@@ -3,36 +3,52 @@
 import * as math from 'mathjs';
 
 interface func_type {
-	0: (a: number, b: number) =>number;
+	0: (a: number, b: number) => number;
 	1: number;
 	2: (a: string, b: string) => string;
 }
 
 const bracket = (a: string) => {
-	return /^-?\d+$/.test(a)?a:`(${a})`;
-}
+	return /^-?\d+$/.test(a) ? a : `(${a})`;
+};
 
 export const func_dp: func_type[] = [
 	// 足し算
-	[(a, b) => math.add(a, b), 0.5, (a, b) =>`${bracket(a)} + ${bracket(b)}`],
+	[(a, b) => math.add(a, b), 0.5, (a, b) => `${bracket(a)} + ${bracket(b)}`],
 
 	// 引き算
-	[(a, b) => math.subtract(a, b), 0.5, (a, b) =>`${bracket(a)} - ${bracket(b)}`],
+	[
+		(a, b) => math.subtract(a, b),
+		0.5,
+		(a, b) => `${bracket(a)} - ${bracket(b)}`,
+	],
 
 	// 掛け算
-	[(a, b) => math.multiply(a, b), 0.8, (a, b) => `${bracket(a)} \\times ${bracket(b)}`],
+	[
+		(a, b) => math.multiply(a, b),
+		0.8,
+		(a, b) => `${bracket(a)} \\times ${bracket(b)}`,
+	],
 
 	// 割り算
-	[(a, b) => math.divide(a, b), 1, (a, b) => `${bracket(a)} \\div ${bracket(b)}`],
+	[
+		(a, b) => math.divide(a, b),
+		1,
+		(a, b) => `${bracket(a)} \\div ${bracket(b)}`,
+	],
 
 	// mod
 	[(a, b) => math.mod(a, b), 1, (a, b) => `${a} \\mod ${b}`],
 
 	// べき乗
-	[(a, b) => {
-		if (a <= 12 && b <= 12) return Number(math.pow(a, b));
-		else return NaN;
-	},1,(a, b) => `{${bracket(a)}}^{${b}}`],
+	[
+		(a, b) => {
+			if (a <= 12 && b <= 12) return Number(math.pow(a, b));
+			else return NaN;
+		},
+		1,
+		(a, b) => `{${bracket(a)}}^{${b}}`,
+	],
 
 	// 最大公約数
 	[(a, b) => math.gcd(a, b), 2, (a, b) => `gcd(${a},${b})`],
@@ -41,7 +57,7 @@ export const func_dp: func_type[] = [
 	[(a, b) => math.lcm(a, b), 2, (a, b) => `lcm(${a},${b})`],
 
 	// log
-	[(a: number, b: number) => math.log(a, b), 2,(a,b)=>`log{${b}} ${a}`],
+	[(a: number, b: number) => math.log(a, b), 2, (a, b) => `log{${b}} ${a}`],
 
 	// =====================
 	// 一つの値シリーズ
