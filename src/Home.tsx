@@ -28,6 +28,7 @@ const Home = () => {
 		'user_number',
 		'year_in',
 		'month_in',
+		'show_equa',
 	]);
 	const [result, setResult] = useState(NaN);
 	const [result_format, setResultFormat] = useState<result_data>({
@@ -102,6 +103,8 @@ const Home = () => {
 		return res;
 	};
 
+	console.log(cookies.show_equa);
+
 	return (
 		<>
 			<Helmet>
@@ -165,7 +168,12 @@ const Home = () => {
 			<h1 id='result' className={result_format.class}>
 				{Number.isNaN(result) ? '未測定' : result}
 			</h1>
-			<BlockMath math={equa}></BlockMath>
+			<div
+				className='equa'
+				style={cookies.show_equa ? {} : { display: 'none' }}
+			>
+				<BlockMath math={equa}></BlockMath>
+			</div>
 			<p className={result_format.class} style={{ fontSize: '20px' }}>
 				{result_format.message}
 			</p>

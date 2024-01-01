@@ -8,7 +8,13 @@ import './css/setting.css';
 import { input_format } from './func/user_input';
 import { cookie_date } from './variable/cookie';
 
-const cookie_list = ['user_number', 'class_count', 'year_in', 'month_in'];
+const cookie_list = [
+	'user_number',
+	'class_count',
+	'year_in',
+	'month_in',
+	'show_equa',
+];
 
 const Setting = () => {
 	const [cookie, setCookie, removeCookie] = useCookies(cookie_list);
@@ -101,6 +107,21 @@ const Setting = () => {
 					}
 				>
 					月を含む
+				</Checkbox>
+			</div>
+
+			<h2>表示の設定</h2>
+
+			<div className='init_settings'>
+				<Checkbox
+					checked={cookie.show_equa}
+					onChange={(event) =>
+						setCookie('show_equa', event.target.checked, {
+							maxAge: cookie_date,
+						})
+					}
+				>
+					数式を表示する
 				</Checkbox>
 			</div>
 
