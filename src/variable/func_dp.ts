@@ -3,9 +3,9 @@
 import * as math from 'mathjs';
 
 interface func_type {
-	0: (a: number, b: number) => number;
-	1: number;
-	2: (a: string, b: string) => string;
+	0: (a: number, b: number) => number; // 計算する関数
+	1: number; // 計算コスト
+	2: (a: string, b: string) => string; // 数式を求める関数
 }
 
 const bracket = (a: string) => {
