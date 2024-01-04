@@ -13,9 +13,8 @@
 		"format": "prettier --write ./src/**/*.{ts,tsx}"
 	},
 	"dependencies": {
-		"@geist-ui/core": "^2.3.8",
-		"@geist-ui/icons": "^1.0.2",
-		"@geist-ui/react": "^2.2.5",
+		"@fluentui/react-components": "^9.44.0",
+		"@fluentui/react-icons": "^2.0.224",
 		"dayjs": "^1.11.10",
 		"js-cookie": "^3.0.5",
 		"katex": "^0.16.9",

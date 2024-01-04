@@ -2,7 +2,6 @@ import dayjs from 'dayjs';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useCookies } from 'react-cookie';
-import { Modal, useModal } from '@geist-ui/react';
 import { Link } from 'react-router-dom';
 import { BlockMath } from 'react-katex';
 import 'katex/dist/katex.min.css';

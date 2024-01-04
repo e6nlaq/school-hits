@@ -1,12 +1,12 @@
 import { Helmet } from 'react-helmet-async';
 import { useCookies } from 'react-cookie';
-import { Button, Checkbox, Modal, useModal } from '@geist-ui/react';
-import { Trash2 } from '@geist-ui/icons';
+import { Switch, Button } from '@fluentui/react-components';
 
 import './css/App.css';
 import './css/setting.css';
 import { input_format } from './func/user_input';
 import { cookie_date } from './variable/cookie';
+import { useState } from 'react';
 
 const cookie_list = [
 	'user_number',
@@ -18,9 +18,7 @@ const cookie_list = [
 
 const Setting = () => {
 	const [cookie, setCookie, removeCookie] = useCookies(cookie_list);
-
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const { visible: _a, setVisible, bindings } = useModal();
+	const [visible, setVisible] = useState(false);
 
 	return (
 		<>
@@ -85,19 +83,17 @@ const Setting = () => {
 			<h2>初期値の設定</h2>
 
 			<div className='init_settings'>
-				<Checkbox
-					id='year_in'
-					checked={cookie.year_in}
-					onChange={(event) =>
-						setCookie('year_in', event.target.checked, {
+				<Switch
+					checked={Boolean(cookie.year_in)}
+					onChange={(_event, checked) =>
+						setCookie('year_in', checked, {
 							maxAge: cookie_date,
 						})
 					}
-				>
-					年を含む
-				</Checkbox>
+					label='年を含む'
+				></Switch>
 
-				<Checkbox
+				<Switch
 					id='month_in'
 					checked={cookie.month_in}
 					onChange={(event) =>
@@ -105,37 +101,30 @@ const Setting = () => {
 							maxAge: cookie_date,
 						})
 					}
-				>
-					月を含む
-				</Checkbox>
+					label='月を含む'
+				></Switch>
 			</div>
 
 			<h2>表示の設定</h2>
 
 			<div className='init_settings'>
-				<Checkbox
+				<Switch
 					checked={cookie.show_equa}
-					onChange={(event) =>
-						setCookie('show_equa', event.target.checked, {
+					onChange={(_event, checked) => {
+						setCookie('show_equa', checked, {
 							maxAge: cookie_date,
-						})
-					}
-				>
-					数式を表示する
-				</Checkbox>
+						});
+					}}
+					label='数式を表示'
+				></Switch>
 			</div>
 
 			<br />
 
 			<Button
-				auto
-				icon={<Trash2></Trash2>}
-				type='error'
-				ghost
 				onClick={() => {
 					setVisible(true);
 				}}
-				placeholder={undefined}
 			>
 				設定をリセット
 			</Button>

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Button } from '@geist-ui/react';
-import { Github, FileText } from '@geist-ui/icons';
+import { Button } from '@fluentui/react-components';
+import { DeleteFilled, DocumentFilled } from '@fluentui/react-icons';
 
 import './css/about.css';
 
@@ -25,11 +25,7 @@ const About = () => {
 			<h2>外部リンク</h2>
 
 			<Button
-				icon={<Github />}
-				type='secondary'
-				auto
-				ghost
-				placeholder={undefined}
+				icon={<DeleteFilled />}
 				onClick={() => open('https://github.com/e6nlaq/school-hits')}
 				className='link'
 				style={{ margin: '5px' }}
@@ -38,12 +34,8 @@ const About = () => {
 			</Button>
 
 			<Button
-				type='success'
-				auto
-				ghost
-				placeholder={undefined}
 				style={{ margin: '5px' }}
-				icon={<FileText />}
+				icon={<DocumentFilled />}
 				onClick={() =>
 					open(
 						'https://github.com/e6nlaq/school-hits/blob/main/LICENSE'
