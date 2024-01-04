@@ -87,7 +87,7 @@ export const dp_run = (
 				// 0未満
 				if (result < 0) {
 					value = math.add(value, 0.3);
-					result = math.abs(result);
+					result = -result;
 					equa = '| ' + equa + ' |';
 				}
 
