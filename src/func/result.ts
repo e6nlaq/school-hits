@@ -20,12 +20,12 @@ export const get_result = (result: number): result_data => {
 	} else if (result < 1) {
 		return {
 			class: 'result_orangered',
-			message: '当たる可能性大',
+			message: '当たる可能性あり',
 		};
 	} else if (result === 1) {
 		return {
 			class: 'result_orange',
-			message: '先生によってはまあまあ当たる',
+			message: '先生によっては当たる',
 		};
 	} else if (result <= 1.5) {
 		return {
@@ -35,7 +35,7 @@ export const get_result = (result: number): result_data => {
 	} else if (result < 3) {
 		return {
 			class: 'result_rime',
-			message: 'ほぼ当たらないはず...',
+			message: 'ほぼ当たらない',
 		};
 	} else {
 		return {
