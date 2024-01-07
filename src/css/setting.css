@@ -1,7 +1,12 @@
+
+/* 設定を縦並びに */
+
 .init_settings {
 	display: flex;
 	flex-direction: column;
 }
+
+/* チェックボックスの余白を調整 */
 
 .init_settings>label:nth-child(1) {
 	margin: 5px;

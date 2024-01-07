@@ -103,8 +103,6 @@ const Home = () => {
 		return res;
 	};
 
-	console.log(cookies.show_equa);
-
 	return (
 		<>
 			<Helmet>

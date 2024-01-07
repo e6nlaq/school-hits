@@ -66,13 +66,11 @@ export const dp_run = (
 				const A = q.front(),
 					B = Number(prev[b]);
 
+				// 関数
 				const func = func_dp[func_at][0];
 				const equa_func = func_dp[func_at][2];
 
-				if (dp[A] === undefined || dp[B] === undefined) {
-					throw new Error(`${JSON.stringify(dp)} ${A} ${B}`);
-				}
-
+				// 結果
 				let result = func(A, B);
 				let value = math
 					.chain(math.add(dp[A].value, dp[B].value))
@@ -109,6 +107,7 @@ export const dp_run = (
 				if (result === 0 || Number.isNaN(result) || result === Infinity)
 					continue;
 
+				// 結果の値の方が小さいなら上書き
 				if (dp[result] === undefined || dp[result].value > value) {
 					if (dp[result] === undefined)
 						dp[result] = { value: -1, equa: '???' };
