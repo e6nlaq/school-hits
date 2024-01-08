@@ -32,7 +32,9 @@ const Setting = () => {
 
 			<h2>クラスの設定</h2>
 
-			<label htmlFor='user_number'>あなたの出席番号</label>
+			<label htmlFor='user_number' title='学校でのあなたの出席番号'>
+				あなたの出席番号
+			</label>
 			<input
 				type='number'
 				id='user_number'
@@ -49,7 +51,12 @@ const Setting = () => {
 
 			<br />
 
-			<label htmlFor='class_count'>クラスの人数</label>
+			<label
+				htmlFor='class_count'
+				title='あなたのクラスに何人の生徒が所属しているか'
+			>
+				クラスの人数
+			</label>
 			<input
 				type='number'
 				id='class_count'
@@ -93,8 +100,11 @@ const Setting = () => {
 							maxAge: cookie_date,
 						})
 					}
+					title=''
 				>
-					年を含む
+					<span title='計算に使用する値に「年」を含めるか'>
+						年を含む
+					</span>
 				</Checkbox>
 
 				<Checkbox
@@ -106,7 +116,9 @@ const Setting = () => {
 						})
 					}
 				>
-					月を含む
+					<span title='計算に使用する値に「月」を含めるか'>
+						月を含む
+					</span>
 				</Checkbox>
 			</div>
 
@@ -121,7 +133,9 @@ const Setting = () => {
 						})
 					}
 				>
-					数式を表示する
+					<span title='結果に式を表示するか(スマホの場合は非推奨)'>
+						数式を表示する
+					</span>
 				</Checkbox>
 			</div>
 
