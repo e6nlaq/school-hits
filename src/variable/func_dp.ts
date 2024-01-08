@@ -38,7 +38,7 @@ export const func_dp: func_type[] = [
 	],
 
 	// mod
-	[(a, b) => math.mod(a, b), 1, (a, b) => `${a} \\mod ${b}`],
+	[(a, b) => math.mod(a, b), 1, (a, b) => `${a} \\bmod ${b}`],
 
 	// べき乗
 	[
