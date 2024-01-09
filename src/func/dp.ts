@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import * as math from 'mathjs';
 import { Queue, HashSet } from 'tstl';
 
-import { func_dp } from '../variable/func_dp';
+import { bracket, func_dp } from '../variable/func_dp';
 import { get_dates } from './date';
 
 export interface dp_values {
@@ -100,7 +100,7 @@ export const dp_run = (
 				if (result > class_count) {
 					value = math.add(value, 0.7);
 					result = math.mod(result, class_count) + 1;
-					equa = `\\{(${equa}) \\mod ${class_count} \\} + 1`;
+					equa = `\\(${bracket(equa)} \\bmod ${class_count} \\} + 1`;
 				}
 
 				// 0・NaN・Infinity

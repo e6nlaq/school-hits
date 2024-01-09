@@ -8,7 +8,7 @@ interface func_type {
 	2: (a: string, b: string) => string; // 数式を求める関数
 }
 
-const bracket = (a: string) => {
+export const bracket = (a: string) => {
 	return /^-?\d+$/.test(a) ? a : `(${a})`;
 };
 
