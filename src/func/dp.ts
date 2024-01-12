@@ -100,7 +100,7 @@ export const dp_run = (
 				if (result > class_count) {
 					value = math.add(value, 0.7);
 					result = math.mod(result, class_count) + 1;
-					equa = `\\(${bracket(equa)} \\bmod ${class_count} \\} + 1`;
+					equa = `(${bracket(equa)} \\bmod ${class_count} ) + 1`;
 				}
 
 				// 0・NaN・Infinity
