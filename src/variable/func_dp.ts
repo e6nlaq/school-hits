@@ -57,7 +57,11 @@ export const func_dp: func_type[] = [
 	[(a, b) => math.lcm(a, b), 2, (a, b) => `lcm(${a},${b})`],
 
 	// log
-	[(a: number, b: number) => math.log(a, b), 2, (a, b) => `log{${b}} ${a}`],
+	[
+		(a: number, b: number) => Number(math.log(a, b)),
+		2,
+		(a, b) => `\\log_{${b}}{${a}}`,
+	],
 
 	// =====================
 	// 一つの値シリーズ

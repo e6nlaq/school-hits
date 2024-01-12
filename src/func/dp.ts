@@ -71,7 +71,7 @@ export const dp_run = (
 				const equa_func = func_dp[func_at][2];
 
 				// 結果
-				let result = func(A, B);
+				let result: number = func(A, B);
 				let value = math
 					.chain(math.add(dp[A].value, dp[B].value))
 					.add(func_dp[func_at][1])
@@ -81,6 +81,7 @@ export const dp_run = (
 				// *****************************
 				// 絶対に答えにならない値を省く・整形
 				// *****************************
+				if (A === 12 && B === 12) console.log(result, equa, A, B);
 
 				// 0未満
 				if (result < 0) {
@@ -99,7 +100,7 @@ export const dp_run = (
 				// クラスの人数より多い
 				if (result > class_count) {
 					value = math.add(value, 0.7);
-					result = math.mod(result, class_count) + 1;
+					result = (result % class_count) + 1;
 					equa = `(${bracket(equa)} \\bmod ${class_count} ) + 1`;
 				}
 
