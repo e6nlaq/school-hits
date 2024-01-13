@@ -133,6 +133,7 @@ const Home = () => {
 					// ユーザーに見せるメッセージを消去
 					setResult(NaN);
 					setResultFormat({ class: '', message: '' });
+					setEqua('');
 
 					// Cookieを整形・チェック
 					const formats = format_cookie();
