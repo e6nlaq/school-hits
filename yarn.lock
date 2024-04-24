@@ -2953,10 +2953,10 @@ random-js@^2.1.0:
   resolved "https://registry.yarnpkg.com/random-js/-/random-js-2.1.0.tgz#0c03238b0a4f701f7a4c7303036ade3083d8ee14"
   integrity sha512-CRUyWmnzmZBA7RZSVGq0xMqmgCyPPxbiKNLFA5ud7KenojVX2s7Gv+V7eB52beKTPGxWRnVZ7D/tCIgYJJ8vNQ==
 
-react-cookie@^7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/react-cookie/-/react-cookie-7.0.1.tgz#9bbf3fc304dba584ef8ca5a88fecf9dc9fe23b23"
-  integrity sha512-SmDjy2TFp+vS6BGOqW7HyaWKyJzVmIH74uP3mxq6kswlwLJEBtIbhkrioozdvQL9r81yprHYFQkSmcO4HiXPdA==
+react-cookie@^7.1.4:
+  version "7.1.4"
+  resolved "https://registry.yarnpkg.com/react-cookie/-/react-cookie-7.1.4.tgz#1e35c9f11394b44fbbc30c5eba1287d89258e993"
+  integrity sha512-wDxxa/HYaSXSMlyWJvJ5uZTzIVtQTPf1gMksFgwAz/2/W3lCtY8r4OChCXMPE7wax0PAdMY97UkNJedGv7KnDw==
   dependencies:
     "@types/hoist-non-react-statics" "^3.3.5"
     hoist-non-react-statics "^3.3.2"
