@@ -45,7 +45,7 @@
 		"prettier": "^3.2.1",
 		"random-js": "^2.1.0",
 		"ts-jest": "^29.1.1",
-		"typescript": "^5.3.3",
+		"typescript": "^5.4.5",
 		"vite": "^5.0.11"
 	}
 }
