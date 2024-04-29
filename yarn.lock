@@ -3309,10 +3309,10 @@ ts-jest@^29.1.1:
     semver "^7.5.3"
     yargs-parser "^21.0.1"
 
-tstl@^2.5.13:
-  version "2.5.13"
-  resolved "https://registry.yarnpkg.com/tstl/-/tstl-2.5.13.tgz#a5a5d27b79a12767e46a08525b3e045c5cdb1180"
-  integrity sha512-h9wayHHFI5+yqt8iau0vqH96cTNhezhZ/Fk/hrIdpfkiMu3lg9nzyvMfs5bIdX51IVzZO6DudLqhkL/rVXpT6g==
+tstl@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/tstl/-/tstl-3.0.0.tgz#7e84c3799652e4982911db0996c086f1e0903c40"
+  integrity sha512-pR83y6/tbJx6jeGRqGJXk2t/eCUynaHEE6zsOLB0Zga8ej61LXtPfoeiROdhezpoCT15+1QMbqKB1Um5kasSKg==
 
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"
