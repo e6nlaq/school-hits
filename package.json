@@ -27,7 +27,7 @@
 		"react-helmet-async": "^2.0.4",
 		"react-katex": "^3.0.1",
 		"react-router-dom": "^6.21.2",
-		"tstl": "^2.5.13"
+		"tstl": "^3.0.0"
 	},
 	"devDependencies": {
 		"@types/jest": "^29.5.11",
